@@ -18,4 +18,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            echo "hello-world"
+            cd ~/app/binar-ch11
+            docker container rm -f binar-ch11 
+            git pull origin  
+            docker build -t binar-ch11:latest . 
+            docker container run -d --name binar-ch11 -p 4000:4000 binar-ch11:latest
