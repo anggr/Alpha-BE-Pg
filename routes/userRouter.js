@@ -8,5 +8,5 @@ router.get('/playedGame', restrict, userController.getPlayedGame);
 router.get('/:username', userController.findOne);
 router.use(restrict);
 router.put('/me/update', authorization, userController.updateUser);
-
+router.put('/avatar', restrict, userController.updateAvatar);
 module.exports = router;

@@ -52,12 +52,13 @@ const register = async (req, res) => {
   }
 
   try {
-    const user = await User.create({
+    await User.create({
       first_name,
       last_name,
       email,
       username,
       password,
+      avatar:"https://e7.pngegg.com/pngimages/398/4/png-clipart-cristiano-ronaldo-computer-icons-avatar-portugal-national-football-team-football-player-cristiano-ronaldo-head-fictional-character.png"
     });
 
     return res.status(201).json({
