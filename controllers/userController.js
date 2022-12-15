@@ -213,6 +213,44 @@ const getPlayedGame = (req, res) => {
       error: err.message,
     });
   });
+
+
+};
+const updateAvatar = async (req, res) => {
+  try {
+    const {
+      avatar,
+  
+    } = req.body;
+
+    const id = req.user.id;
+
+
+    const user = await User.update(
+      {
+        avatar,
+      },
+      { where: { id }, returning: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        result: 'failed',
+        message: ' User Not Found',
+      });
+    }
+    return res.status(200).json({
+      result: 'success',
+      message: 'Congratulations, your avatar has been successfully updated.',
+      data: user[1][0],
+    });
+  } catch (err) {
+    return res.status(400).json({
+      result: 'faileds',
+      message: 'Oops! Something went wrong',
+      error: err.message,
+    });
+  }
 };
 
 module.exports = {
@@ -222,4 +260,5 @@ module.exports = {
   updateUser,
   updateScore,
   getPlayedGame,
+  updateAvatar
 };
