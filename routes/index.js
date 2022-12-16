@@ -10,4 +10,5 @@ router.use('/game', game);
 router.use('/user', userRouter);
 router.put('/score', restrict, userController.updateScore);
 
+
 module.exports = router;
