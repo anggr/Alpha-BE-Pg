@@ -8,7 +8,7 @@ exports.sendEmail = (emailData) => {
     requireTLS: true,
     auth: {
       user: process.env.AUTH_USER,
-      pass: process.env.AUTH_PASS,
+      pass: process.env.AUTH_PASS
     },
   });
   return transporter
