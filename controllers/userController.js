@@ -192,9 +192,9 @@ const updateScore = async (req, res) => {
     });
 };
 
-const getPlayedGame = (req, res) => {
+const getGameScore = (req, res) => {
   Detail.findAll({
-    attributes: ['gameId'],
+    attributes: ['gameId', 'score'],
     where: {
       userId: req.user.id,
     },
@@ -216,6 +216,9 @@ const getPlayedGame = (req, res) => {
 
 
 };
+
+
+
 const updateAvatar = async (req, res) => {
   try {
     const {
@@ -259,6 +262,6 @@ module.exports = {
   getAllUser,
   updateUser,
   updateScore,
-  getPlayedGame,
+  getGameScore,
   updateAvatar
 };
