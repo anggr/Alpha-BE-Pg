@@ -33,13 +33,8 @@ const updateUser = async (req, res) => {
       email,
       username,
     } = req.body;
-
     const id = req.user.id;
-    const hashPassword = bcrypt.hashSync(
-      req.body.password,
-      bcrypt.genSaltSync(10),
-      null
-    );
+
 
     const user = await User.update(
       {
@@ -47,7 +42,6 @@ const updateUser = async (req, res) => {
         last_name,
         email,
         username,
-        password: hashPassword,
       },
       { where: { id }, returning: true }
     );
@@ -199,20 +193,20 @@ const getGameScore = (req, res) => {
       userId: req.user.id,
     },
   })
-  .then((game) => {
-    res.status(200).json({
-      result: 'success',
-      message: 'successfully retriving data',
-      data: game,
+    .then((game) => {
+      res.status(200).json({
+        result: 'success',
+        message: 'successfully retriving data',
+        data: game,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        result: 'failed',
+        message: 'some error occured while retriving data',
+        error: err.message,
+      });
     });
-  })
-  .catch((err) => {
-    res.status(500).json({
-      result: 'failed',
-      message: 'some error occured while retriving data',
-      error: err.message,
-    });
-  });
 
 
 };
@@ -223,7 +217,7 @@ const updateAvatar = async (req, res) => {
   try {
     const {
       avatar,
-  
+
     } = req.body;
 
     const id = req.user.id;
@@ -255,6 +249,8 @@ const updateAvatar = async (req, res) => {
     });
   }
 };
+
+
 
 module.exports = {
   findOne,

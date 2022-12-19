@@ -6,4 +6,8 @@ router.post('/', game.newGame);
 router.get('/:id', game.findOne);
 router.get('/:id/leaderboard', game.getLeaderboard);
 
+
+
+
+
 module.exports = router;

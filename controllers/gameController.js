@@ -43,6 +43,7 @@ const findAll = (req, res) => {
     });
 };
 
+
 const findOne = (req, res) => {
   Game.findOne({
     where: {
@@ -99,31 +100,11 @@ const getLeaderboard = (req, res) => {
       });
     });
 };
-const getRecomendation = (req, res) => {
-  Game.findAll({
-    attributes: ['id', 'name', 'description', 'play_count'],
-    order: [['play_count', 'DESC']],
-    limit: 4,
-  })
-    .then((detail) => {
-      res.status(200).json({
-        result: 'success',
-        message: 'successfully retrieve data',
-        data: detail,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        result: 'failed',
-        message: 'some error occured while retrieving game',
-        error: err.message,
-      });
-    });
-};
+
+
 module.exports = {
   newGame,
   findAll,
   findOne,
-  getLeaderboard,
-  getRecomendation,
+  getLeaderboard
 };
